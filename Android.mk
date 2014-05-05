@@ -46,7 +46,11 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE := libnativehelper_compat
+ifeq ($(USE_GMS_LIBS),true)
+	LOCAL_MODULE := libnativehelper_compat_old
+else
+	LOCAL_MODULE := libnativehelper_compat
+endif
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/include/nativehelper
 LOCAL_CFLAGS := -Werror
